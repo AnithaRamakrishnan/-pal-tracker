@@ -8,17 +8,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PalTracker
 {
-    [Route("/")]
-    public class WelcomeController : Controller
+    [Route("/env")]
+    public class EnvController : Controller
     {
-        private readonly WelcomeMessage _message;
-        public WelcomeController(WelcomeMessage message)
+        private readonly CloudFoundryInfo _cloudFoundryInfo;
+
+        public EnvController(CloudFoundryInfo cloudFoundryInfo)
         {
-            _message = message;
+            _cloudFoundryInfo = cloudFoundryInfo;
         }
-
         [HttpGet]
-        public string SayHello() => _message.Message;
-
+        public CloudFoundryInfo Get() => _cloudFoundryInfo; 
     }
 }
