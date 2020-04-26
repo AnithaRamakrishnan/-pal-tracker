@@ -4,6 +4,6 @@ applications:
   path: src/PalTracker/bin/Release/netcoreapp2.2/publish/
   buildpack: https://github.com/cloudfoundry/dotnet-core-buildpack#v2.2.7
   routes:
-  - route: pal-tracker-anitha-ramakrishnan.cfapps.io
+  - route: pal-tracker-anitha-ramakrishnan-review.cfapps.io
   env:
     WELCOME_MESSAGE: Hello from Cloud Foundry
