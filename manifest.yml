@@ -1,8 +1,7 @@
 ---
 applications:
 - name: pal-tracker
-  path: src/PalTracker/bin/Release/netcoreapp2.2/publish/
-  buildpack: https://github.com/cloudfoundry/dotnet-core-buildpack#v2.2.7
+  path: src/PalTracker/bin/Release/netcoreapp3.1/publish
   routes:
   - route: pal-tracker-anitha-ramakrishnan.cfapps.io
   env:

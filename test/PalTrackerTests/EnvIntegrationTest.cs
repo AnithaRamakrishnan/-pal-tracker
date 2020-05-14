@@ -8,7 +8,7 @@ namespace PalTrackerTests
     [Collection("Integration")]
     public class EnvIntegrationTest
     {
-        private readonly HttpClient _testClient;
+        private HttpClient _testClient;
 
         public EnvIntegrationTest()
         {
@@ -16,13 +16,12 @@ namespace PalTrackerTests
             Environment.SetEnvironmentVariable("MEMORY_LIMIT", "512M");
             Environment.SetEnvironmentVariable("CF_INSTANCE_INDEX", "1");
             Environment.SetEnvironmentVariable("CF_INSTANCE_ADDR", "127.0.0.1");
-
-            _testClient = IntegrationTestServer.Start().CreateClient();
         }
 
         [Fact]
         public async Task ReturnsCloudFoundryEnv()
         {
+            _testClient = await IntegrationTestServer.GetHttpClient();
             var response = await _testClient.GetAsync("/env");
             response.EnsureSuccessStatusCode();
 

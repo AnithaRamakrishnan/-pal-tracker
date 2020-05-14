@@ -13,11 +13,19 @@ namespace PalTrackerTests
     public class TimeEntryIntegrationTest
     {
 
-        private readonly HttpClient _testClient;
+        private HttpClient _testClient;
+
+        private async void Init()
+        {
+            _testClient = await IntegrationTestServer.GetHttpClient();
+        }
 
         public TimeEntryIntegrationTest()
         {
-            _testClient = IntegrationTestServer.Start().CreateClient();
+
+            Environment.SetEnvironmentVariable("MYSQL__CLIENT__CONNECTIONSTRING", DbTestSupport.TestDbConnectionString);
+            DbTestSupport.ExecuteSql("TRUNCATE TABLE time_entries");
+            Init();
         }
 
         [Fact]
@@ -92,7 +100,7 @@ namespace PalTrackerTests
 
             var getAllResponseBody = JArray.Parse(getAllResponse.Content.ReadAsStringAsync().Result);
 
-            Assert.Equal(1, getAllResponseBody.Count);
+            Assert.Single(getAllResponseBody);
             Assert.Equal(id, getAllResponseBody[0]["id"].ToObject<int>());
             Assert.Equal(999, getAllResponseBody[0]["projectId"].ToObject<long>());
             Assert.Equal(888, getAllResponseBody[0]["userId"].ToObject<long>());

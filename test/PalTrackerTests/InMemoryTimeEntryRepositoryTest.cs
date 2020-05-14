@@ -82,7 +82,7 @@ namespace PalTrackerTests
             var remaining = _repository.List();
             Assert.DoesNotContain(new TimeEntry(1, 222, 333, new DateTime(2008, 08, 01, 12, 00, 01), 24), remaining);
             Assert.Contains(new TimeEntry(2, 888, 777, new DateTime(2012, 09, 02, 11, 30, 00), 12), remaining);
-            Assert.Equal(1, remaining.Count());
+            Assert.Single(remaining);
         }
     }
 }

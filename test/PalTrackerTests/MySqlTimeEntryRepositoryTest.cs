@@ -32,10 +32,10 @@ namespace PalTrackerTests
             var foundInDb = FindInDb(createdTimeEntryId);
 
             Assert.Equal(createdTimeEntryId, foundInDb[0]["id"]);
-            Assert.Equal(newTimeEntry.ProjectId, foundInDb[0]["project_id"]);
-            Assert.Equal(newTimeEntry.UserId, foundInDb[0]["user_id"]);
-            Assert.Equal(newTimeEntry.Date, foundInDb[0]["date"]);
-            Assert.Equal(newTimeEntry.Hours, foundInDb[0]["hours"]);
+            Assert.Equal(newTimeEntry.projectId, foundInDb[0]["project_id"]);
+            Assert.Equal(newTimeEntry.userId, foundInDb[0]["user_id"]);
+            Assert.Equal(newTimeEntry.date, foundInDb[0]["date"]);
+            Assert.Equal(newTimeEntry.hours, foundInDb[0]["hours"]);
 
             Assert.Equal(1, foundInDb.Count);
         }
@@ -48,10 +48,10 @@ namespace PalTrackerTests
             var createdTimeEntry = _repository.Create(newTimeEntry);
 
             Assert.NotNull(createdTimeEntry.Id);
-            Assert.Equal(newTimeEntry.ProjectId, createdTimeEntry.ProjectId);
-            Assert.Equal(newTimeEntry.UserId, createdTimeEntry.UserId);
-            Assert.Equal(newTimeEntry.Date, createdTimeEntry.Date);
-            Assert.Equal(newTimeEntry.Hours, createdTimeEntry.Hours);
+            Assert.Equal(newTimeEntry.projectId, createdTimeEntry.projectId);
+            Assert.Equal(newTimeEntry.userId, createdTimeEntry.userId);
+            Assert.Equal(newTimeEntry.date, createdTimeEntry.date);
+            Assert.Equal(newTimeEntry.hours, createdTimeEntry.hours);
         }
 
         [Fact]
@@ -62,10 +62,10 @@ namespace PalTrackerTests
             var timeEntry = _repository.Find(1);
 
             Assert.Equal(1L, timeEntry.Id);
-            Assert.Equal(123L, timeEntry.ProjectId);
-            Assert.Equal(456L, timeEntry.UserId);
-            Assert.Equal(DateTime.Parse("2012-01-02"), timeEntry.Date);
-            Assert.Equal(12, timeEntry.Hours);
+            Assert.Equal(123L, timeEntry.projectId);
+            Assert.Equal(456L, timeEntry.userId);
+            Assert.Equal(DateTime.Parse("2012-01-02"), timeEntry.date);
+            Assert.Equal(12, timeEntry.hours);
         }
 
         [Fact]
@@ -113,10 +113,10 @@ namespace PalTrackerTests
             var updatedTimeEntry = _repository.Update(1, update);
 
             Assert.Equal(1L, updatedTimeEntry.Id);
-            Assert.Equal(update.ProjectId, updatedTimeEntry.ProjectId);
-            Assert.Equal(update.UserId, updatedTimeEntry.UserId);
-            Assert.Equal(update.Date, updatedTimeEntry.Date);
-            Assert.Equal(update.Hours, updatedTimeEntry.Hours);
+            Assert.Equal(update.projectId, updatedTimeEntry.projectId);
+            Assert.Equal(update.userId, updatedTimeEntry.userId);
+            Assert.Equal(update.date, updatedTimeEntry.date);
+            Assert.Equal(update.hours, updatedTimeEntry.hours);
         }
 
         [Fact]
@@ -131,10 +131,10 @@ namespace PalTrackerTests
             var foundInDb = FindInDb(1);
 
             Assert.Equal(1L, foundInDb[0]["id"]);
-            Assert.Equal(update.ProjectId, foundInDb[0]["project_id"]);
-            Assert.Equal(update.UserId, foundInDb[0]["user_id"]);
-            Assert.Equal(update.Date, foundInDb[0]["date"]);
-            Assert.Equal(update.Hours, foundInDb[0]["hours"]);
+            Assert.Equal(update.projectId, foundInDb[0]["project_id"]);
+            Assert.Equal(update.userId, foundInDb[0]["user_id"]);
+            Assert.Equal(update.date, foundInDb[0]["date"]);
+            Assert.Equal(update.hours, foundInDb[0]["hours"]);
             Assert.Equal(1, foundInDb.Count);
         }
 
@@ -160,10 +160,10 @@ namespace PalTrackerTests
         {
             var sql = $@"INSERT INTO time_entries(id, project_id, user_id, date, hours)
                          VALUES('{timeEntry.Id}',
-                                '{timeEntry.ProjectId}',
-                                '{timeEntry.UserId}',
-                                '{timeEntry.Date:yyyy-MM-dd}',
-                                '{timeEntry.Hours}')";
+                                '{timeEntry.projectId}',
+                                '{timeEntry.userId}',
+                                '{timeEntry.date:yyyy-MM-dd}',
+                                '{timeEntry.hours}')";
 
             DbTestSupport.ExecuteSql(sql);
         }
