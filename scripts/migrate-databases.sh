@@ -26,7 +26,6 @@ cf_ssh_pid=$!
 echo "Waiting for tunnel"
 sleep 5
 
-# Passing this in as a param is a bit strage. Maybe put flyway on the path?
-./flyway-*/flyway -url="jdbc:mysql://127.0.0.1:63306/$db_name" -locations=filesystem:$2/databases/tracker -user=$db_username -password=$db_password migrate
+./flyway-*/flyway -url="jdbc:mysql://127.0.0.1:3306/$db_name" -locations=filesystem:$2/databases/tracker -user=$db_username -password=$db_password migrate
 
 kill -STOP $cf_ssh_pid
