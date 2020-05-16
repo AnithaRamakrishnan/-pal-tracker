@@ -11,7 +11,7 @@ jobs:
          name: Install MySQL
          command: |
            apt-get update
-           apt-get -y install mysql-server
+           apt-get install -y mysql-server
            service mysql start
 
            # Wait for MySQL to start
