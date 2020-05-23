@@ -33,6 +33,7 @@ namespace PalTrackerTests
               })
               .ConfigureLogging((hostingContext, loggingBuilder) => 
               {
+                  //added logging details similar as program.cs
                   loggingBuilder.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
                   loggingBuilder.AddDynamicConsole();
               });
